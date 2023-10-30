@@ -7,7 +7,7 @@ repository:
   description: 📦 Template repository for AtomicGo repositories
 
   # A comma-separated list of topics to set on the repository
-  topics: atomicgo, go, golang, golang-library
+  topics: atomicgo, go, golang, golang-library, hacktoberfest
 
   # Either `true` to make the repository private, or `false` to make it public.
   private: false
