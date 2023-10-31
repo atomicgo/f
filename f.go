@@ -2,7 +2,7 @@ package f
 
 // Format formats the template string.
 func Format(template string, data ...any) string {
-	res, _ := FormatSafe(template, data)
+	res, _ := FormatSafe(template, data...)
 	return res
 }
 
