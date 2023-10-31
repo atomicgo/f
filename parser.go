@@ -2,16 +2,19 @@ package f
 
 import (
 	"fmt"
-	"github.com/antonmedv/expr"
 	"regexp"
 	"strings"
+
+	"github.com/antonmedv/expr"
 )
 
+// Parsed contains a parsed template string, ready to be evaluated.
 type Parsed struct {
 	Template string
 	Parts    []Part
 }
 
+// Parse parses a template string into a Parsed struct.
 func Parse(template string) Parsed {
 	return Parsed{
 		Template: template,
@@ -19,14 +22,17 @@ func Parse(template string) Parsed {
 	}
 }
 
+// String returns the parsed template parts as a single string.
 func (parsed Parsed) String() string {
 	var res strings.Builder
 	for _, part := range parsed.Parts {
 		res.WriteString(part.Value)
 	}
+
 	return res.String()
 }
 
+// Eval evaluated expressions in the parsed template string.
 func (parsed Parsed) Eval(data any) (string, error) {
 	for i, part := range parsed.Parts {
 		if part.Parsed {
@@ -49,18 +55,21 @@ func (parsed Parsed) Eval(data any) (string, error) {
 	return parsed.String(), nil
 }
 
+// Part is a single part of a template string.
+// Can either be a raw string, or an expression.
 type Part struct {
 	Value  string
 	Parsed bool
 }
 
 func splitIntoParts(template string) []Part {
-	var parts []Part
-
 	r := regexp.MustCompile(`\$\{([^\}]*)\}`)
 	matches := r.FindAllStringSubmatchIndex(template, -1)
 
+	parts := make([]Part, 0, len(matches)+1)
+
 	lastIndex := 0
+
 	for _, match := range matches {
 		start, end := match[0], match[1]
 		exprStart, exprEnd := match[2], match[3]

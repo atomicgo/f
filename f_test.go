@@ -32,6 +32,7 @@ func TestFormat(t *testing.T) {
 				t.Errorf("Format() error = %v", err)
 				return
 			}
+
 			if got != tt.want {
 				t.Errorf("Format() = %v, want %v", got, tt.want)
 			}
