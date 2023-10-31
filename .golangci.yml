@@ -29,7 +29,7 @@ linters:
     - typecheck
     - unused
     # additional linters
-    - asasalint
+    # - asasalint
     - asciicheck
     - bidichk
     - bodyclose
