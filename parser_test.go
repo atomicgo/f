@@ -1,8 +1,9 @@
 package f
 
 import (
-	"reflect"
 	"testing"
+
+	"atomicgo.dev/assert"
 )
 
 func Test_splitIntoParts(t *testing.T) {
@@ -17,7 +18,7 @@ func Test_splitIntoParts(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.template, func(t *testing.T) {
-			if got := splitIntoParts(tt.template); !reflect.DeepEqual(got, tt.want) {
+			if got := splitIntoParts(tt.template); !assert.Equal(got, tt.want) {
 				t.Errorf("splitIntoParts() = %v, want %v", got, tt.want)
 			}
 		})
