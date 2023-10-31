@@ -1,6 +1,10 @@
 package f
 
-import "testing"
+import (
+	"testing"
+
+	"atomicgo.dev/assert"
+)
 
 type Person struct {
 	Name string
@@ -33,7 +37,7 @@ func TestFormat(t *testing.T) {
 				return
 			}
 
-			if got != tt.want {
+			if !assert.Equal(got, tt.want) {
 				t.Errorf("Format() = %v, want %v", got, tt.want)
 			}
 		})
