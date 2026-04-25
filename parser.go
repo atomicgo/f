@@ -5,7 +5,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/antonmedv/expr"
+	"github.com/expr-lang/expr"
 )
 
 // Parsed contains a parsed template string, ready to be evaluated.
